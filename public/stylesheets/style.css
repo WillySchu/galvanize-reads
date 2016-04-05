@@ -76,6 +76,11 @@ header {
   background-color: grey;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
 #logo {
   width: 5vw;
   height: auto;
