@@ -6,17 +6,18 @@ block content
     include ./includes/sidebar.jade
 
     div.container
-      div
-        form(action="/authors" method="POST")
-          div.form-group
-            label First Name
-              input.form-control(type="text" placeholder="William")
-          div.form-group
-            label Last Name
-              input.form-control(type="text" placeholder="Shakespear")
-          div.form-group
-            label Portrait URL
-              input.form-control(type="text" placeholder="http://example.url")
-          div.form-group
-            label Biography
-              textarea.form-control(rows="5")
+      div.row
+        div.col-md-6.col-md-offset-1
+          form(action="/authors" method="POST")
+            div.form-group
+              label First Name
+                input.form-control(type="text" placeholder="William")
+            div.form-group
+              label Last Name
+                input.form-control(type="text" placeholder="Shakespear")
+            div.form-group
+              label Portrait URL
+                input.form-control(type="text" placeholder="http://example.url")
+            div.form-group
+              label Biography
+                textarea.form-control(rows="5")
