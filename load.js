@@ -34,21 +34,18 @@ function loadAuthors(data) {
   for (let i = 1; i < data.length; i++) {
     if(data[i][5].trim()) {
       Authors().insert({first_name: data[i][5], last_name: data[i][6], biography: data[i][7], portrait_url: data[i][8]}, '*').then((author) => {
-        // console.log(author);
       }).catch((err) => {
         // console.log(err);
       });
     }
     if(data[i][9].trim()) {
       Authors().insert({first_name: data[i][9], last_name: data[i][10], biography: data[i][11], portrait_url: data[i][12]}, '*').then((author) => {
-        // console.log(author);
       }).catch((err) => {
         // console.log(err);
       });
     }
     if (data[i][13].trim()) {
       Authors().insert({first_name: data[i][13], last_name: data[i][14], biography: data[i][15], portrait_url: data[i][16]}, '*').then((author) => {
-        // console.log(author);
       }).catch((err) => {
         // console.log(err);
       });
@@ -85,8 +82,6 @@ function getJoinData() {
       }
       for (let i = 0; i < fullNames.length; i++) {
         Books().select('id', 'title').where({author1: fullNames[i]}).orWhere({author2: fullNames[i]}).orWhere({author3: fullNames[i]}).then((book) => {
-          // console.log(book, i);
-          // books.push(book);
           for (let j = 0; j < book.length; j++) {
             bookIDs.push({bookId: book[j].id, authId: authorIDs[i]})
           }
@@ -102,18 +97,17 @@ function getJoinData() {
 
 function loadJoinTable() {
   getJoinData().then((data) => {
-    console.log(data);
     for (var i = 0; i < data.length; i++) {
       JoinTable().insert({author_id: data[i].authId, book_id: data[i].bookId}).then((data) => {
-        
+
       });
     }
   })
 }
 
 function loadUp(data) {
-  // loadAuthors(data);
-  // loadBooks(data);
+  loadAuthors(data);
+  loadBooks(data);
   loadJoinTable()
 }
 
