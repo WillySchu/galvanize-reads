@@ -1,12 +1,12 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('join', (table) => {
+  return knex.schema.createTable('jointable', (table) => {
     table.increments();
-    table.integer('author_id').references('id').inTable('authors').onDelete('CASCADE');
-    table.integer('book_id').references('id').inTable('books').onDelete('CASCADE');
+    table.integer('author_id').references('id').inTable('authors').onDelete('CASCADE').notNullable();
+    table.integer('book_id').references('id').inTable('books').onDelete('CASCADE').notNullable();
   })
   return
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('join');
+  return knex.schema.dropTable('jointable');
 };
