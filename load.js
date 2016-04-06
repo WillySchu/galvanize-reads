@@ -72,33 +72,49 @@ function loadBooks(data) {
   }
 }
 
+function getJoinData() {
+  const promise = new Promise((resolve, reject) => {
+    const fullNames = [];
+    const authorIDs = [];
+    const bookIDs = [];
+
+    Authors().select('id', 'first_name', 'last_name').then((names) => {
+      for (let i = 0; i < names.length; i++) {
+        fullNames.push(names[i].first_name + ' ' + names[i].last_name);
+        authorIDs.push(names[i].id);
+      }
+      for (let i = 0; i < fullNames.length; i++) {
+        Books().select('id', 'title').where({author1: fullNames[i]}).orWhere({author2: fullNames[i]}).orWhere({author3: fullNames[i]}).then((book) => {
+          // console.log(book, i);
+          // books.push(book);
+          for (let j = 0; j < book.length; j++) {
+            bookIDs.push({bookId: book[j].id, authId: authorIDs[i]})
+          }
+          if (i === fullNames.length - 1) {
+            resolve(bookIDs);
+          }
+        });
+      }
+    });
+  })
+  return promise;
+}
+
 function loadJoinTable() {
-  const fullNames = [];
-  const authorIDs = [];
-  const bookIDs = [];
-  Authors().select('id', 'first_name', 'last_name').then((names) => {
-    for (let i = 0; i < names.length; i++) {
-      fullNames.push(names[i].first_name + ' ' + names[i].last_name);
-      authorIDs.push(names.id);
-    }
-    for (let i = 0; i < fullNames.length; i++) {
-      Books().select('id', 'title').where({author1: fullNames[i]}).orWhere({author2: fullNames[i]}).orWhere({author3: fullNames[i]}).then((book) => {
-        console.log(book);
-        bookIDs.push({bookId: book[i].id, authId: authorIDs[i]})
+  getJoinData().then((data) => {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+      JoinTable().insert({author_id: data[i].authId, book_id: data[i].bookId}).then((data) => {
+        
       });
     }
-    for (let i = 0; i < bookIDs.length; i++) {
-      console.log(bookIDs[i]);
-      JoinTable().insert({author_id: bookIDs[i].authId, book_id: bookIDs[i].bookId}).then((data) => {
-      })
-    }
-  });
+  })
 }
 
 function loadUp(data) {
   // loadAuthors(data);
   // loadBooks(data);
-  loadJoinTable();
+  loadJoinTable()
 }
 
 readData().then((data) => {
