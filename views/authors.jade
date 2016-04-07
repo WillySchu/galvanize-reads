@@ -2,4 +2,15 @@ extends layout
 
 block content
   include ./includes/header.jade
-  include ./includes/sidebar.jade
+  div.flex-container
+    include ./includes/sidebar.jade
+    div.container
+      div.row
+        div.col-md-8.col-md-offset-1
+          table.table.table-hover
+            each author in authors
+              tr
+                td 
+                  img(src=author.portrait_url)
+                td= author.first_name
+                td= author.last_name
