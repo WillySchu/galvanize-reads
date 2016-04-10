@@ -1,16 +1,19 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('cookie-session');
+const bodyParser = require('body-parser');
 
-var landing = require('./routes/landing');
-var routes = require('./routes/index');
-var books = require('./routes/books');
-var authors = require('./routes/authors');
+const landing = require('./routes/landing');
+const routes = require('./routes/index');
+const books = require('./routes/books');
+const authors = require('./routes/authors');
+const auth = require('./routes/auth');
 
-var app = express();
+const app = express();
+require('dotenv').load();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,8 +26,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({keys: [process.env.SESSION_KEY1, process.env.SESSION_KEY2]}));
 
 app.use('/', landing);
+app.use('/auth', auth);
 app.use('/home', routes);
 app.use('/authors', authors);
 app.use('/books', books);
