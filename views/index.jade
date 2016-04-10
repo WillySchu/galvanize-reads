@@ -2,4 +2,10 @@ extends layout
 
 block content
   include ./includes/header.jade
-  include ./includes/sidebar.jade
+  div(class="landingParent")
+    a(href="/books" class="landingChild")
+      div
+        img(src="images/books.png")
+    a(href="/authors" class="landingChild")
+      div
+        img(src="images/authorlanding.png" class="authorLanding")

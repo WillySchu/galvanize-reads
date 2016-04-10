@@ -8,7 +8,6 @@ function Authors() {
 
 router.get('/', (req, res, next) => {
   Authors().select().then((data) => {
-    console.log(data);
     res.render('authors', {authors: data});
   })
 });

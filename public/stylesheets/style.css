@@ -19,6 +19,11 @@ header {
   font-size: 1.5vw;
 }
 
+.logout {
+  padding: .5vw;
+  font-size: 1.5vw;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;

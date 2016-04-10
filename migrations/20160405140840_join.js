@@ -4,7 +4,6 @@ exports.up = function(knex, Promise) {
     table.integer('author_id').references('id').inTable('authors').onDelete('CASCADE').notNullable();
     table.integer('book_id').references('id').inTable('books').onDelete('CASCADE').notNullable();
   })
-  return
 };
 
 exports.down = function(knex, Promise) {

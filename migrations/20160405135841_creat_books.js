@@ -9,7 +9,6 @@ exports.up = function(knex, Promise) {
     table.text('description');
     table.string('cover_url');
   })
-  return
 };
 
 exports.down = function(knex, Promise) {

@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
     table.string('portrait_url');
     table.text('biography');
   })
-  return
 };
 
 exports.down = function(knex, Promise) {

@@ -3,7 +3,12 @@ block content
     div
       img(src="/images/logo.png" alt="logo" id="logo")
     div.header
-      a(href="/home" id="header") Galvanize Reads
-    div.signin
-      a(href="/auth/signin")
-        p Sign In 
+      a(href="/" id="header") Galvanize Reads
+    if !user
+      div.signin
+        a(href="/auth/signin")
+          p Sign In 
+    if user
+      div.logout
+        a(href="/auth/logout")
+          p Log Out

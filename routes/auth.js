@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/users');
+const validate = require('../lib/validations');
 
 
 router.get('/signin', (req, res, next) => {
@@ -13,8 +14,9 @@ router.get('/logout', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  if (!(req.body.password === req.body.repassword)) {
-    return res.render('signin', {errors: 'Passwords must match'})
+  errors = validate.checkPassword(req.body);
+  if (errors) {
+    return res.render('signin', {errors});
   }
   Users.createUser(req.body, (err, data) => {
     res.send(data);
@@ -22,14 +24,18 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/signin', (req, res, next) => {
-  Users.authenticateUser(req.body.email, req.body.password, (err, user) => {
+  Users.authenticateUser(req.body.email, req.body.name, req.body.password, (err, user) => {
     if (err) {
       res.render('signin', {error: err});
     } else {
+      console.log(user);
       req.session.user = user;
+      console.log(req.session);
+      // req.session.save();
+      console.log(res.req.headers);
       res.redirect('/');
     }
-  })
+  });
 });
 
 module.exports = router;
