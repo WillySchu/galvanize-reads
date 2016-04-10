@@ -1,19 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('../db/knex');
-
-function Authors() {
-  return knex('authors');
-}
+const db = require('../lib/dbio');
 
 router.get('/', (req, res, next) => {
-  Authors().select().then((data) => {
-    res.render('authors', {authors: data});
-  })
+  res.render('authors');
 });
+
+router.get('/:id', (req, res, next) => {
+ // some code
+})
 
 router.get('/new', (req, res) => {
   res.render('newauthor');
+})
+
+router.post('/', (req, res) => {
+  console.log(req.body);
+  db.insertAuthor(req.body).then((data) => {
+    res.send(data);
+  })
 })
 
 module.exports = router;

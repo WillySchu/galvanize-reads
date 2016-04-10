@@ -11,13 +11,15 @@ block content
           form(action="/authors" method="POST")
             div.form-group
               label First Name
-                input.form-control(type="text" placeholder="William")
+                input.form-control(type="text" name="firstName" value=firstName placeholder="William")
             div.form-group
               label Last Name
-                input.form-control(type="text" placeholder="Shakespear")
+                input.form-control(type="text" name="lastName" placeholder="Shakespear")
             div.form-group
               label Portrait URL
-                input.form-control(type="text" placeholder="http://example.url")
+                input.form-control(type="text" name="portraitUrl" placeholder="http://example.url")
             div.form-group
               label Biography
-                textarea.form-control(rows="5")
+                textarea.form-control(rows="5" name="biography")
+            div.form-group
+              button.submit Submit

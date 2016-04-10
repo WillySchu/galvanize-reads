@@ -22,6 +22,7 @@ header {
 .logout {
   padding: .5vw;
   font-size: 1.5vw;
+  margin-left: 5vw;
 }
 
 .sidebar {

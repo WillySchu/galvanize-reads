@@ -7,8 +7,10 @@ block content
     if !user
       div.signin
         a(href="/auth/signin")
-          p Sign In 
+          p Sign In
     if user
+      div
+        h4 Hello #{user.name}
       div.logout
         a(href="/auth/logout")
           p Log Out
