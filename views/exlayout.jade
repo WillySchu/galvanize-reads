@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='icon', href='#{pathToAssets}/docs/favicon.ico')
+    title Carousel Template for Bootstrap
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/ex.css')
+    
+  body
+    .navbar-wrapper
+      .container
+        .navbar.navbar-inverse.navbar-static-top(role='navigation')
+          .container
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='/') Galvanize Reads
+            .navbar-collapse.collapse
+              ul.nav.navbar-nav
+                li.active
+                  a(href='/') Home
+                li
+                  a(href='/books') Books
+                li
+                  a(href='/authors') Authors
+              ul.nav.navbar-nav.navbar-right
+                li
+                  a(href='/auth/signin') Sign In
+  block content

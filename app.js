@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
-const landing = require('./routes/landing');
+const example = require('./routes/landing');
 const routes = require('./routes/index');
 const books = require('./routes/books');
 const authors = require('./routes/authors');
@@ -43,6 +43,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', routes);
+app.use('/ex', example);
 app.use('/auth', auth);
 app.use('/authors', authors);
 app.use('/books', books);

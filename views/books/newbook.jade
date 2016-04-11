@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  include ../includes/header.jade
+  div(class="flex-container")
+    include ../includes/sidebar.jade
+
+    div.container
+      div.row
+        div.col-md-6.col-md-offset-1
+          form(action="/books" method="POST")
+            div.form-group
+              label First Author
+              select.form-control(type="text" name="author1")
+                each author in authors
+                  option= author.first_name + ' ' + author.last_name
+            div.form-group
+              label Second Author
+              select.form-control(type="text" name="author2")
+                each author in authors
+                  option= author.first_name + ' ' + author.last_name
+            div.form-group
+              label Third Author
+              select.form-control(type="text" name="author2")
+                each author in authors
+                  option= author.first_name + ' ' + author.last_name
+            div.form-group
+              label Title
+              input.form-control(type="text" name="title" placeholder="King Lear")
+            div.form-group
+              label Genre
+              input.form-control(type="text" name="genre" placeholder="Tragedy")
+            div.form-group
+              label Description
+              textarea.form-control(rows="5" name="description")
+            div.form-group
+              label Cover URL
+              input.form-control(type="text" name="coverUrl" placeholder="http://example.url")
+            div.form-group
+              button.btn.btn-primary.btn-lg.btn-block.submit Submit

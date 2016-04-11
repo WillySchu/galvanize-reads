@@ -12,9 +12,9 @@ function readData() {
       parse(data, (err, data) => {
         if(err) return reject(err);
         resolve(data)
-      })
-    })
-  })
+      });
+    });
+  });
   return promise;
 }
 
@@ -91,7 +91,7 @@ function getJoinData() {
         });
       }
     });
-  })
+  });
   return promise;
 }
 
@@ -102,7 +102,7 @@ function loadJoinTable() {
 
       });
     }
-  })
+  });
 }
 
 function loadUp(data) {
@@ -113,4 +113,4 @@ function loadUp(data) {
 
 readData().then((data) => {
   loadUp(data);
-})
+});
