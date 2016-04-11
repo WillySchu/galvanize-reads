@@ -1,23 +1,42 @@
 extends ../layout
 
 block content
-  div(class="flex-container")
-
-    div.container
-      div.row
-        div.col-md-6.col-md-offset-1
-          form(action="/authors" method="POST")
-            div.form-group
-              label First Name
-                input.form-control(type="text" name="firstName" value=firstName placeholder="William")
-            div.form-group
-              label Last Name
-                input.form-control(type="text" name="lastName" placeholder="Shakespear")
-            div.form-group
-              label Portrait URL
-                input.form-control(type="text" name="portraitUrl" placeholder="http://example.url")
-            div.form-group
-              label Biography
-                textarea.form-control(rows="5" name="biography")
-            div.form-group
-              button.submit Submit
+  .buffer
+  .container
+    form.form-horizontal(action='/authors', method='POST')
+      .row
+        .col-md-10.col-md-offset-1
+          fieldset
+            legend New Author
+      .row
+        .col-md-6
+          .control-group
+            label.control-label(for='first_name') First Name
+            .controls
+              input.form-control.input-lg(type='text', name='first_name', placeholder='William')
+              p.help-block Please enter the author's first name
+          .control-group
+            label.control-label(for='last_name') Last Name
+            .controls
+              input.form-control.input-lg(type='text', name='last_name', placeholder='Shakespear')
+              p.help-block Please enter the author's last name
+          .control-group
+            label.control-label(for='portrait_url') Portrait URL
+            .controls
+              input.form-control.input-lg(type='text', name='portrait_url', placeholder='http://example.com')
+              p.help-block Please enter a url
+        .col-md-6
+          .control-group
+            label.control-label(for='biography') Biography
+            .controls
+              textarea.form-control.input-lg(type='text', name='biography', placeholder='blah, blah, blah' rows=5)
+              p.help-block Please enter a brief biography of the author
+          .control-group
+            label.control-label(for='books') Books
+            .controls
+              input.form-control.input-lg(type='text', name='books', placeholder='not functional')
+              p.help-block Please enter books by this author
+      .row
+        .control-group
+          .controls
+            button.btn.btn-success(type='submit') Submit

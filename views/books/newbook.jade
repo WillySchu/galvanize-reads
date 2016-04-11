@@ -1,37 +1,48 @@
 extends ../layout
 
 block content
-  div.container
-    div.row
-      div.col-md-6.col-md-offset-1
-        form(action="/books" method="POST")
-          div.form-group
-            label First Author
-            select.form-control(type="text" name="author1")
-              each author in authors
-                option= author.first_name + ' ' + author.last_name
-          div.form-group
-            label Second Author
-            select.form-control(type="text" name="author2")
-              each author in authors
-                option= author.first_name + ' ' + author.last_name
-          div.form-group
-            label Third Author
-            select.form-control(type="text" name="author2")
-              each author in authors
-                option= author.first_name + ' ' + author.last_name
-          div.form-group
-            label Title
-            input.form-control(type="text" name="title" placeholder="King Lear")
-          div.form-group
-            label Genre
-            input.form-control(type="text" name="genre" placeholder="Tragedy")
-          div.form-group
-            label Description
-            textarea.form-control(rows="5" name="description")
-          div.form-group
-            label Cover URL
-            input.form-control(type="text" name="coverUrl" placeholder="http://example.url")
-          div.form-group
-            button.btn.btn-primary.btn-lg.btn-block.submit Submit
-    include ../includes/footer.jade
+  .buffer
+  .container
+    form.form-horizontal(action='/books', method='POST')
+      .row
+        .col-md-10.col-md-offset-1
+          fieldset
+            legend New Book
+      .row
+        .col-md-6
+          .control-group
+            label.control-label(for='title') Title
+            .controls
+              input.form-control.input-lg(type='text', name='title', placeholder='King Lear')
+              p.help-block Please enter the book's title
+          .control-group
+            label.control-label(for='author1') Author
+            .controls
+              select#author1.form-control.input-lg(type='text', name='author1', placeholder='William Shakespear')
+                each authorbook in authorbooks
+                  option(val='#{authorbook.author.first_name} #{authorbook.author.last_name}')= authorbook.author.first_name + ' ' + authorbook.author.last_name
+              p.help-block Please select an author
+          .control-group#secondAuthor
+            .controls
+              button#moreAuthor.btn.btn-default(type='submit') Add Second Author
+        .col-md-6
+          .control-group
+            label.control-label(for='genre') Genre
+            .controls
+              input.form-control.input-lg(type='text', name='genre', placeholder='Tragedy')
+              p.help-block Please enter a genre
+          .control-group
+            label.control-label(for='cover_url') Cover URL
+            .controls
+              input.form-control.input-lg(type='text', name='cover_url', placeholder='http://example.com')
+              p.help-block Please enter a url
+          .control-group
+            label.control-label(for='description') Description
+            .controls
+              textarea.form-control.input-lg(type='text', name='description', placeholder='blah, blah, blah' rows=6)
+              p.help-block Please enter a brief description of the book
+      .row
+        .control-group
+          .controls
+            button.btn.btn-success(type='submit') Submit
+  script(src='/javascripts/newauthor.js')

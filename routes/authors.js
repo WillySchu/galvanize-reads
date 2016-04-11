@@ -6,18 +6,18 @@ router.get('/', (req, res, next) => {
   res.render('authors/authors');
 });
 
-router.get('/:id', (req, res, next) => {
-  db.getAuthor(req.params.id).then((author) => {
-   console.log(author);
-   res.render('authors/authors', {authors: author})
-  });
-});
-
-router.get('/new', (req, res) => {
+router.get('/new', (req, res, next) => {
   res.render('authors/newauthor');
 });
 
-router.post('/', (req, res) => {
+router.get('/:id', (req, res, next) => {
+  db.getBooksByAuthor(req.params.id).then((authorbook) => {
+    res.render('authors/author', {authorbook})
+  })
+});
+
+
+router.post('/', (req, res, next) => {
   console.log(req.body);
   db.insertAuthor(req.body).then((data) => {
     res.send(data);

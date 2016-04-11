@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container
+    hr.featurette-divider
+    .row.authors
+      .col-md-5
+        .authors-heading
+          img.author-img.img-responsive(src='#{authorbook.author.portrait_url}', alt='#{authorbook.author.first_name}')
+          h2= authorbook.author.first_name + ' ' + authorbook.author.last_name
+        hr
+        .books-author
+          each book in authorbook.books
+            .book-link
+              a(href='/books/#{book.id}')= book.title
+      .col-md-7
+        p.lead= authorbook.author.biography
+        p
+          a.btn.btn-default(href='/authors/#{authorbook.author.id}', role='button') View details &raquo;
+    hr.featurette-divider
+  include ../includes/footer.jade

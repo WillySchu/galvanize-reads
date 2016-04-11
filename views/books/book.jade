@@ -11,11 +11,14 @@ block content
         h2= book.title
         hr
         h4 By:
-        h3.text-muted= book.author1
+        h3.text-muted
+          a(href='/authors/#{book.author1_id}')= book.author1
           if book.author2.length > 1
-            | , #{book.author2}
+            | -   
+            a(href='/authors/#{book.author2_id}')= book.author2
           if book.author3.length > 1
-            | , #{book.author3}
+            | -   
+            a(href='/authors/#{book.author3_id}')= book.author3
         hr
         h4 Genre:
         h3= book.genre

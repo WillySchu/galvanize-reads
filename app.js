@@ -11,6 +11,7 @@ const books = require('./routes/books');
 const authors = require('./routes/authors');
 const auth = require('./routes/auth');
 const db = require('./lib/dbio');
+const setLocals = require('./lib/setLocals');
 
 const app = express();
 require('dotenv').load();
@@ -31,16 +32,7 @@ app.use(cookieSession({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  res.locals.user = req.session.user
-  db.getBooks().then((books) => {
-    res.locals.books = books;
-    db.getAuthors().then((authors) => {
-      res.locals.authors = authors;
-      next()
-    });
-  });
-});
+app.use(setLocals);
 
 app.use('/', routes);
 app.use('/ex', example);

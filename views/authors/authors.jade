@@ -3,21 +3,30 @@ extends ../layout
 block content
   .container
     hr.featurette-divider
-    each author, index in authors
-      if index < 4
-        .row.authors
-          .col-md-5
-            .authors-heading
-              img.author-img.img-responsive(src='#{author.portrait_url}', alt='#{author.first_name}')
-              h2= author.first_name + ' ' + author.last_name
-            .books-author
-              
-          .col-md-7
-            if author.biography.length < 400
-              p.lead= author.biography
+    each authorbook, index in authorbooks
+      .row.authors
+        .col-md-5
+          .authors-heading
+            img.author-img.img-responsive(src='#{authorbook.author.portrait_url}', alt='#{authorbook.author.first_name}')
+            h2= authorbook.author.first_name + ' ' + authorbook.author.last_name
+          .books-author
+            h4 Books:
+            if authorbook.books.length > 3
+              each book, index in authorbook.books
+                if index < 3
+                  .book-link
+                    a(href='/books/#{book.id}')= book.title
+              p ...
             else
-              p.lead= author.biography.substr(0,397) + '...'
-            p
-              a.btn.btn-default(href='/authors/#{author.id}', role='button') View details &raquo;
-        hr.featurette-divider
-    include ../includes/footer.jade
+              each book in authorbook.books
+                .book-link
+                  a(href='/books/#{book.id}')= book.title
+        .col-md-7
+          if authorbook.author.biography.length < 400
+            p.lead= authorbook.author.biography
+          else
+            p.lead= authorbook.author.biography.substr(0,397) + '...'
+          p
+            a.btn.btn-default(href='/authors/#{authorbook.author.id}', role='button') View details &raquo;
+      hr.featurette-divider
+  include ../includes/footer.jade
