@@ -1,14 +1,17 @@
 extends ../layout
 
 block content
-  div.flex-container
-    div.container
-      div.row
-        div.col-md-8.col-md-offset-1
-          table.table.table-hover
-            each author in authors
-              tr
-                td
-                  img(src=author.portrait_url)
-                td= author.first_name
-                td= author.last_name
+  .container
+    hr.featurette-divider
+    each author, index in authors
+      if index < 4
+        .row.featurette
+          .col-md-7
+            h2.featurette-heading= author.first_name + ' ' + author.last_name
+            p.lead= author.biography
+            p
+              a.btn.btn-default(href='/authors/#{author.id}', role='button') View details &raquo;
+          .col-md-5
+            img.featurette-image.img-responsive(src='#{author.portrait_url}', alt='#{author.first_name}')
+        hr.featurette-divider
+    include ../includes/footer.jade

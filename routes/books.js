@@ -11,7 +11,9 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  // some code
+  db.getBook(req.params.id).then((book) => {
+    res.render('books/book', {book});
+  })
 });
 
 router.post('/', (req, res) => {

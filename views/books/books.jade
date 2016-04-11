@@ -1,18 +1,22 @@
 extends ../layout
 
 block content
-  div.flex-container
-    div.container
-      div.row
-        div.col-md-8.col-md-offset-1
-          table.table.table-hover
-            each book in books
-              tr
-                td
-                  img(src=book.cover_url)
-                td= book.title
-                td= book.author1
-                if book.author2
-                  td= book.author2
-                if book.author3
-                  td= book.author3
+  .container
+    hr.featurette-divider
+    each book, index in books
+      if index < 4
+        .row.featurette
+          .col-md-7
+            h2.featurette-heading= book.title + ' | '
+              span.text-muted= book.author1
+              if book.author2.length > 1
+                span.text-muted= ', ' + book.author2
+              if book.author3.length > 1
+                span.text-muted= ', ' + book.author3
+            p.lead= book.description
+            p
+              a.btn.btn-default(href='/books/#{book.id}', role='button') View details &raquo;
+          .col-md-5
+            img.featurette-image.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
+        hr.featurette-divider
+    include ../includes/footer.jade

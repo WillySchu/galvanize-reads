@@ -38,10 +38,8 @@ block content
       span.glyphicon.glyphicon-chevron-left
     a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
       span.glyphicon.glyphicon-chevron-right
-  // /carousel
 
   .container.marketing
-    // Three columns of text below the carousel
     .row
       each author, index in authors
         if index < 3
@@ -54,13 +52,10 @@ block content
               p= author.biography.substr(0,397) + '...'
             p
               a.btn.btn-default(href='/authors/#{author.id}', role='button') View details &raquo;
-          // /.col-lg-4
-      // /.col-lg-4
-    // /.row
-    // START THE FEATURETTES
+
     hr.featurette-divider
     each book, index in books
-      if index < 4
+      if index < 3
         .row.featurette
           .col-md-7
             h2.featurette-heading= book.title + ' | '
@@ -70,16 +65,10 @@ block content
               if book.author3.length > 1
                 span.text-muted= ', ' + book.author3
             p.lead= book.description
+            p
+              a.btn.btn-default(href='/books/#{book.id}', role='button') View details &raquo;
           .col-md-5
             img.featurette-image.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
         hr.featurette-divider
     
-    // /end books
-    footer
-      p.pull-right
-        a(href='#') Back to top
-      p
-        | &copy; 2014 Galvanize, Inc. &middot; 
-        a(href='#') Privacy
-        |  &middot; 
-        a(href='#') Terms
+    include ./includes/footer.jade

@@ -2,8 +2,7 @@ extends layout
 
 block content
   .container
-    p
-      a(href='/') Back
+    .buffer
       
     h2 Sign In:
     .row
@@ -48,3 +47,5 @@ block content
         .form-group
           .col-sm-offset-2.col-sm-8
             button.btn.btn-default(type='submit') Signup
+    hr.featurette-divider
+    include ./includes/footer.jade
