@@ -8,7 +8,7 @@ router.get('/signin', (req, res, next) => {
   res.render('signin');
 });
 
-router.get('/logout', (req, res, next) => {
+router.get('/signout', (req, res, next) => {
   req.session = null;
   res.redirect('/');
 });

@@ -1,11 +1,85 @@
-extends layout
+extend layout
 
 block content
-  include ./includes/header.jade
-  div(class="landingParent")
-    a(href="/books" class="landingChild")
-      div
-        img(src="images/books.png")
-    a(href="/authors" class="landingChild")
-      div
-        img(src="images/authorlanding.png" class="authorLanding")
+  #myCarousel.carousel.slide(data-ride='carousel')
+    ol.carousel-indicators
+      li.active(data-target='#myCarousel', data-slide-to='0')
+      li(data-target='#myCarousel', data-slide-to='1')
+      li(data-target='#myCarousel', data-slide-to='2')
+    .carousel-inner
+      .item.active
+        img(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='First slide')
+        .container
+          .carousel-caption
+            h1 Welcome to Galvanize Reads
+            p
+              | An expanding collection of the world's greatest authors and books.
+            p
+              a.btn.btn-lg.btn-primary(href='/auth/signup', role='button') Sign up today
+      .item
+        img(src='data:image/gif;base64,R0lGODlhAQABAIAAAGZmZgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Second slide')
+        .container
+          .carousel-caption
+            h1 Books
+            p
+              | We boast an ever growing database of all your favorite titles, searchable by name, author or genre.
+            p
+              a.btn.btn-lg.btn-primary(href='/books', role='button') See Books
+      .item
+        img(src='data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', alt='Third slide')
+        .container
+          .carousel-caption
+            h1 Authors
+            p
+              | And of course, you can browse authors at your leisure, or, using our powerful search features, find exactly who you're looking for instantly.
+            p
+              a.btn.btn-lg.btn-primary(href='/authors', role='button') See Authors
+    a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+      span.glyphicon.glyphicon-chevron-left
+    a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+      span.glyphicon.glyphicon-chevron-right
+  // /carousel
+
+  .container.marketing
+    // Three columns of text below the carousel
+    .row
+      each author, index in authors
+        if index < 3
+          .col-lg-4
+            img.img-circle(src='#{author.portrait_url}', alt='#{author.first_name}', style='width: 140px; height: 140px;')
+            h2= author.first_name + ' ' + author.last_name
+            if author.biography.length < 400
+              p= author.biography
+            else
+              p= author.biography.substr(0,397) + '...'
+            p
+              a.btn.btn-default(href='/authors/#{author.id}', role='button') View details &raquo;
+          // /.col-lg-4
+      // /.col-lg-4
+    // /.row
+    // START THE FEATURETTES
+    hr.featurette-divider
+    each book, index in books
+      if index < 4
+        .row.featurette
+          .col-md-7
+            h2.featurette-heading= book.title + ' | '
+              span.text-muted= book.author1
+              if book.author2.length > 1
+                span.text-muted= ', ' + book.author2
+              if book.author3.length > 1
+                span.text-muted= ', ' + book.author3
+            p.lead= book.description
+          .col-md-5
+            img.featurette-image.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
+        hr.featurette-divider
+    
+    // /end books
+    footer
+      p.pull-right
+        a(href='#') Back to top
+      p
+        | &copy; 2014 Galvanize, Inc. &middot; 
+        a(href='#') Privacy
+        |  &middot; 
+        a(href='#') Terms
