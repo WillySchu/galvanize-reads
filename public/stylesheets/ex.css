@@ -29,6 +29,17 @@ body {
   width: auto;
 }
 
+.signout {
+  margin-left: 10px;
+  border-left: 1px solid black;
+}
+
+/*Add buffer to clear navbar*/
+
+.buffer {
+  height: 100px
+}
+
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -129,11 +140,47 @@ body {
   }
 }
 
-.buffer {
-  height: 100px
+/* BOOK DETAILS PAGE
+-------------------------------------------------- */
+
+.book-single {
+
 }
 
-.signout {
-  margin-left: 10px;
-  border-left: 1px solid black;
+.book-single h2 {
+  font-weight: 300;
+  margin-top: 0;
+}
+
+.book-single h3 {
+  font-weight: 300;
+  margin-top: 0;
+}
+
+.book-single h4 {
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.book-single a {
+  margin-right: 1vw;
+}
+
+/* AUTHORS PAGE
+-------------------------------------------------- */
+
+.authors h2 {
+  display: inline-block;
+  font-size: 50px;
+  font-weight: 300;
+  margin-top: 0px;
+  letter-spacing: -1px;
+  vertical-align: middle;
+}
+
+.author-img {
+  display: inline-block;
+  height: 60px;
+  width: auto;
+  margin-right: 1vw;
 }

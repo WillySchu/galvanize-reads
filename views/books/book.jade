@@ -3,17 +3,26 @@ extends ../layout
 block content
   .container
     hr.featurette-divider
-    .row.featurette
+    .row.book-single
       .col-md-5
-        img.featurette-image.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
+        img.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
       .col-md-7
         h4 Title:
         h2= book.title
+        hr
+        h4 By:
         h3.text-muted= book.author1
-        if book.author2.length > 1
-          h3.text-muted= book.author2
-        if book.author3.length > 1
-          h3.text-muted= book.author3
+          if book.author2.length > 1
+            | , #{book.author2}
+          if book.author3.length > 1
+            | , #{book.author3}
+        hr
+        h4 Genre:
+        h3= book.genre
+        hr
         p.lead= book.description
+        p
+          a.btn.btn-default(href='/books/#{book.id}/edit', role='button') Edit &raquo;
+          a.btn.btn-default(href='/books/#{book.id}/delete', role='button') Delete &raquo;
     hr.featurette-divider
     include ../includes/footer.jade

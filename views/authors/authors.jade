@@ -5,13 +5,19 @@ block content
     hr.featurette-divider
     each author, index in authors
       if index < 4
-        .row.featurette
+        .row.authors
+          .col-md-5
+            .authors-heading
+              img.author-img.img-responsive(src='#{author.portrait_url}', alt='#{author.first_name}')
+              h2= author.first_name + ' ' + author.last_name
+            .books-author
+              
           .col-md-7
-            h2.featurette-heading= author.first_name + ' ' + author.last_name
-            p.lead= author.biography
+            if author.biography.length < 400
+              p.lead= author.biography
+            else
+              p.lead= author.biography.substr(0,397) + '...'
             p
               a.btn.btn-default(href='/authors/#{author.id}', role='button') View details &raquo;
-          .col-md-5
-            img.featurette-image.img-responsive(src='#{author.portrait_url}', alt='#{author.first_name}')
         hr.featurette-divider
     include ../includes/footer.jade
