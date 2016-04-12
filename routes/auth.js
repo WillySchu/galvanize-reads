@@ -24,15 +24,11 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/signin', (req, res, next) => {
-  Users.authenticateUser(req.body.email, req.body.name, req.body.password, (err, user) => {
+  Users.authenticateUser(req.body.emailOrName, req.body.password, (err, user) => {
     if (err) {
       res.render('signin', {error: err});
     } else {
-      console.log(user);
       req.session.user = user;
-      console.log(req.session);
-      // req.session.save();
-      console.log(res.req.headers);
       res.redirect('/');
     }
   });

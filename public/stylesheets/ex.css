@@ -138,6 +138,10 @@ body {
   .featurette-heading {
     margin-top: 100px;
   }
+
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
 }
 
 /* BOOK DETAILS PAGE
@@ -183,4 +187,18 @@ body {
   height: 60px;
   width: auto;
   margin-right: 1vw;
+}
+
+/* AUTHOR DETAIL PAGE
+-------------------------------------------------- */
+
+.author-single a {
+  margin-right: 1vw;
+}
+
+/* SIGNIN
+------------------------------------------------------*/
+
+.jumbotron {
+  text-align: center;
 }

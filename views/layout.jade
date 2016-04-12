@@ -24,10 +24,32 @@ html(lang='en')
               ul.nav.navbar-nav
                 li
                   a(href='/') Home
-                li
-                  a(href='/books') Books
-                li
-                  a(href='/authors') Authors
+                li.dropdown
+                  a.dropdown-toggle(href='/authors', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                    | Authors 
+                    span.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='/authors') All Authors
+                    li.divider(role='separator')
+                    li
+                      a(href='/authors/new') Add New Author
+                    li.divider(role='separator')
+                    li
+                      a(href='#') Something else here
+                li.dropdown
+                  a.dropdown-toggle(href='/books', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                    | Books 
+                    span.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='/books') All Books
+                    li.divider(role='separator')
+                    li
+                      a(href='/books/new') Add New Book
+                    li.divider(role='separator')
+                    li
+                      a(href='#') Something else here
               ul.nav.navbar-nav.navbar-right
                 if user
                   li

@@ -3,7 +3,7 @@ extends ../layout
 block content
   .container
     hr.featurette-divider
-    .row.authors
+    .row.author-single
       .col-md-5
         .authors-heading
           img.author-img.img-responsive(src='#{authorbook.author.portrait_url}', alt='#{authorbook.author.first_name}')
@@ -16,6 +16,7 @@ block content
       .col-md-7
         p.lead= authorbook.author.biography
         p
-          a.btn.btn-default(href='/authors/#{authorbook.author.id}', role='button') View details &raquo;
+          a.btn.btn-default(href='/authors/#{authorbook.author.id}/edit', role='button') Edit &raquo;
+          a.btn.btn-default(href='/authors/#{authorbook.author.id}/delete', role='button') Delete &raquo;
     hr.featurette-divider
-  include ../includes/footer.jade
+    include ../includes/footer.jade

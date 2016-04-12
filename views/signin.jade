@@ -1,51 +1,60 @@
 extends layout
 
 block content
+  .buffer
   .container
-    .buffer
-      
-    h2 Sign In:
     .row
-      form.form-horizontal(method='post', action='/auth/signin')
-        .form-group
-          label.col-sm-2.control-label(for='name') Name:
-          .col-sm-8
-            input#name.form-control(type='text', name='name')
-        .form-group
-          label.col-sm-2.control-label(for='email') Email:
-          .col-sm-8
-            input#email.form-control(type='email', name='email')
-        .form-group
-          label.col-sm-2.control-label(for='password') Password: 
-          .col-sm-8
-            input#password.form-control(type='password', name='password')
-        .form-group
-          .col-sm-offset-2.col-sm-8
-            button.btn.btn-default(type='submit') Signin
-
-    h2 Sign Up:
+      .jumbotron
+        h2 Welcome!
+        p.lead Sign In if you already have an account -OR- Register a new one
     .row
-      if errors
-        include ./includes/errors.jade
-      form.form-horizontal(method='post', action='/auth')
-        .form-group
-          label.col-sm-2.control-label(for='name') Name:
-          .col-sm-8
-            input#name.form-control(type='text', name='name')
-        .form-group
-          label.col-sm-2.control-label(for='email') Email:
-          .col-sm-8
-            input#email.form-control(type='email', name='email')
-        .form-group
-          label.col-sm-2.control-label(for='password') Password: 
-          .col-sm-8
-            input#password.form-control(type='password', name='password')
-        .form-group
-          label.col-sm-2.control-label(for='repassword') Confirm Password: 
-          .col-sm-8
-            input#repassword.form-control(type='password', name='repassword')
-        .form-group
-          .col-sm-offset-2.col-sm-8
-            button.btn.btn-default(type='submit') Signup
-    hr.featurette-divider
-    include ./includes/footer.jade
+      .col-md-6
+        form.form-horizontal(action='/auth/signin', method='POST')
+          fieldset
+            #legend
+              legend Sign In
+            .control-group
+              label.control-label(for='emailOrName') E-mail or Username
+              .controls
+                input#email.form-control.input-lg(type='text', name='emailOrName', placeholder='')
+                p.help-block Please provide your E-mail or Username
+            .control-group
+              label.control-label(for='password') Password
+              .controls
+                input#password.form-control.input-lg(type='password', name='password', placeholder='')
+                p.help-block Please enter your password
+            .control-group
+              .controls
+                button.btn.btn-success Sign In
+      .col-md-6
+        form.form-horizontal(action='/auth/signin', method='POST')
+          fieldset
+            #legend
+              legend Register
+            .control-group
+              label.control-label(for='name') Username
+              .controls
+                input#username.form-control.input-lg(type='text', name='name', placeholder='')
+                p.help-block Username can contain any letters or numbers, without spaces
+            .control-group
+              label.control-label(for='email') E-mail
+              .controls
+                input#email.form-control.input-lg(type='email', name='email', placeholder='')
+                p.help-block Please provide your E-mail
+            .control-group
+              label.control-label(for='password') Password
+              .controls
+                input.form-control.input-lg(type='password', name='password', placeholder='')
+                p.help-block Password should be at least 6 characters
+            .control-group
+              label.control-label(for='password_confirm') Password (Confirm)
+              .controls
+                input#password_confirm.form-control.input-lg(type='password', name='password_confirm', placeholder='')
+                p.help-block Please confirm password
+            .control-group
+              .controls
+                button.btn.btn-success Register
+      .row
+        .col-md-12
+          hr
+      include ./includes/footer.jade

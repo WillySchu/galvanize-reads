@@ -4,6 +4,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
+const override = require('method-override');
 
 const example = require('./routes/landing');
 const routes = require('./routes/index');
@@ -22,6 +23,7 @@ app.set('view engine', 'jade');
 app.set('trust proxy', 1);
 
 app.use(logger('dev'));
+app.use(override('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

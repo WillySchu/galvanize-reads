@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+  .buffer
+  .container
+    form.form-horizontal(action='/books/#{book.id}/?_method=PUT', method='POST')
+      .row
+        .col-md-10.col-md-offset-1
+          fieldset
+            legend Edit Book
+      .row
+        .col-md-6
+          .control-group
+            label.control-label(for='title') Title
+            .controls
+              input.form-control.input-lg(type='text', name='title', value='#{book.title}')
+              p.help-block Please enter the book's title
+          .control-group
+            label.control-label(for='author1') Author
+            .controls
+              select#author1.form-control.input-lg(type='text', name='author1', placeholder='William Shakespear')
+                each authorbook in authorbooks
+                  if authorbook.author.first_name + ' ' + authorbook.author.last_name === book.author1
+                    option(val='#{authorbook.author.first_name} #{authorbook.author.last_name}' selected)= authorbook.author.first_name + ' ' + authorbook.author.last_name
+                  else
+                    option(val='#{authorbook.author.first_name} #{authorbook.author.last_name}')= authorbook.author.first_name + ' ' + authorbook.author.last_name
+              p.help-block Please select an author
+          .control-group#secondAuthor
+            .controls
+              button#moreAuthor.btn.btn-default(type='submit') Add Second Author
+        .col-md-6
+          .control-group
+            label.control-label(for='genre') Genre
+            .controls
+              input.form-control.input-lg(type='text', name='genre', placeholder='Tragedy' value='#{book.genre}')
+              p.help-block Please enter a genre
+          .control-group
+            label.control-label(for='cover_url') Cover URL
+            .controls
+              input.form-control.input-lg(type='text', name='cover_url', placeholder='http://example.com', value='#{book.cover_url}')
+              p.help-block Please enter a url
+          .control-group
+            label.control-label(for='description') Description
+            .controls
+              textarea.form-control.input-lg(type='text', name='description', rows=6)
+                | #{book.description}
+              p.help-block Please enter a brief description of the book
+      .row
+        .control-group
+          .controls
+            button.btn.btn-success(type='submit') Submit
+  script(src='/javascripts/newauthor.js')

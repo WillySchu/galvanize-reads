@@ -16,11 +16,22 @@ router.get('/:id', (req, res, next) => {
   })
 });
 
+router.get('/:id/edit', (req, res, next) => {
+  db.getBook(req.params.id).then((book) => {
+    res.render('books/editbook', {book});
+  })
+})
+
 router.post('/', (req, res) => {
-  console.log(req.body);
   db.insertBook(req.body).then((data) => {
-    res.send(data);
+    res.redirect('/books');
   });
+});
+
+router.put('/:id', (req, res) => {
+  db.updateBook(req.params.id, req.body).then(data => {
+    res.redirect('/books/' + req.params.id);
+  })
 });
 
 module.exports = router;
