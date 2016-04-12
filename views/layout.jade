@@ -45,6 +45,13 @@ html(lang='en')
                   ul.dropdown-menu.inverse-dropdown
                     li
                       a(href='/books') All Books
+                    li.divider(role='seperator')
+                    li.menu-item.dropdown.dropdown-submenu
+                      a.dropdown-toggle(href='#', data-toggle='dropdown') Books by Genre
+                      ul.dropdown-menu
+                        each genre in genres
+                          li
+                            a(href='/books/genre/#{genre}')= genre
                     if user && user.is_admin
                       li.divider(role='separator')
                       li
@@ -52,6 +59,23 @@ html(lang='en')
                       li.divider(role='separator')
                       li
                         a(href='#') Something else here
+              if user
+                .col-sm-3.col-md-3.search-form
+                  form#search-form.navbar-form(role='search')
+                    .input-group
+                      input.form-control#search-input(type='text', placeholder='Search', name='q')
+                      .input-group-btn
+                        .btn-group
+                          button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                            span.caret
+                          ul.dropdown-menu.dropdown-menu-right
+                            li
+                              a.search-books(href='#') Search Books
+                            li
+                              a.search-authors(href='#') Search Authors
+                        button.btn.btn-default(type='submit')
+                          i.glyphicon.glyphicon-search
+
               ul.nav.navbar-nav.navbar-right
                 if user
                   li

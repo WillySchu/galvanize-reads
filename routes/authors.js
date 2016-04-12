@@ -11,6 +11,14 @@ router.get('/new', (req, res, next) => {
   res.render('authors/newauthor');
 });
 
+router.get('/search', valid.reqAdmin, (req, res, next) => {
+  db.searchAuthors(req.query.q).then(promises => {
+    Promise.all(promises).then(data => {
+      res.render('authors/authors', {authorbooks: data});
+    })
+  })
+})
+
 router.get('/:id', (req, res, next) => {
   db.getBooksByAuthor(req.params.id).then((authorbook) => {
     res.render('authors/author', {authorbook})
