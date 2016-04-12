@@ -13,10 +13,10 @@ block content
         h4 By:
         h3.text-muted
           a(href='/authors/#{book.author1_id}')= book.author1
-          if book.author2.length > 1
+          if book.author2 && book.author2.length > 1
             | -   
             a(href='/authors/#{book.author2_id}')= book.author2
-          if book.author3.length > 1
+          if book.author3 && book.author3.length > 1
             | -   
             a(href='/authors/#{book.author3_id}')= book.author3
         hr
@@ -26,6 +26,18 @@ block content
         p.lead= book.description
         p
           a.btn.btn-default(href='/books/#{book.id}/edit', role='button') Edit &raquo;
-          a.btn.btn-default(href='/books/#{book.id}/delete', role='button') Delete &raquo;
+          button.btn.btn-default.confirm-delete-modal(role='button') Delete &raquo;
     hr.featurette-divider
+    #modal-delete.modal.modal-effect-blur
+      .modal-content
+        h3 Are you sure you want to delete #{book.title}?
+        br
+        div
+          span
+            form.delete-form(action='/books/#{book.id}?_method=DELETE', method='POST')
+              button.modal-delete.btn.btn-danger.btn-lg Delete
+            button.modal-delete-cancel.btn.btn-primary.btn-lg Cancel
+    .modal-overlay
     include ../includes/footer.jade
+    
+    script(src='/javascripts/delete.js')

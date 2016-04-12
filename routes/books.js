@@ -34,4 +34,10 @@ router.put('/:id', (req, res) => {
   })
 });
 
+router.delete('/:id', (req, res) => {
+  db.delBook(req.params.id).then(data => {
+    res.redirect('/books');
+  });
+});
+
 module.exports = router;

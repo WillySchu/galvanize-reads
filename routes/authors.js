@@ -29,9 +29,14 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  console.log(req.body);
   db.updateAuthor(req.params.id, req.body).then(data => {
     res.redirect('/authors/' + req.params.id);
+  });
+});
+
+router.delete('/:id', (req, res, next) => {
+  db.delAuthor(req.params.id).then(data => {
+    res.redirect('/authors');
   });
 });
 

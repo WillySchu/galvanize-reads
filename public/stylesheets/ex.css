@@ -220,3 +220,24 @@ body {
 .jumbotron {
   text-align: center;
 }
+
+/* DELETE MODAL
+----------------------------------------------------*/
+
+.modal-content {
+  text-align: center;
+  width: 50%;
+  height: 220px;
+  margin: auto;
+  top: 25vh;
+}
+
+.modal-delete {
+  width: 80%;
+  margin: 5px;
+}
+
+.modal-delete-cancel {
+  width: 80%;
+  margin: 5px;
+}

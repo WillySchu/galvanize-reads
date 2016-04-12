@@ -17,6 +17,18 @@ block content
         p.lead= authorbook.author.biography
         p
           a.btn.btn-default(href='/authors/#{authorbook.author.id}/edit', role='button') Edit &raquo;
-          a.btn.btn-default(href='/authors/#{authorbook.author.id}/delete', role='button') Delete &raquo;
+          button.btn.btn-default.confirm-delete-modal(role='button') Delete &raquo;
     hr.featurette-divider
+    #modal-delete.modal.modal-effect-blur
+      .modal-content
+        h3 Are you sure you want to delete #{authorbook.author.first_name} #{authorbook.author.last_name}?
+        br
+        div
+          span
+            form.delete-form(action='/authors/#{authorbook.author.id}?_method=DELETE', method='POST')
+              button.modal-delete.btn.btn-danger.btn-lg Delete
+            button.modal-delete-cancel.btn.btn-primary.btn-lg Cancel
+    .modal-overlay
     include ../includes/footer.jade
+    
+    script(src='/javascripts/delete.js')
