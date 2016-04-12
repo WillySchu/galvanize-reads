@@ -38,7 +38,7 @@ app.use(setLocals);
 
 app.use('/', routes);
 app.use('/ex', example);
-app.use('/auth', auth);
+app.use('/', auth);
 app.use('/authors', authors);
 app.use('/books', books);
 

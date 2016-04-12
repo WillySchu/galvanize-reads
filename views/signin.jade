@@ -9,7 +9,7 @@ block content
         p.lead Sign In if you already have an account -OR- Register a new one
     .row
       .col-md-6
-        form.form-horizontal(action='/auth/signin', method='POST')
+        form.form-horizontal(action='/signin', method='POST')
           fieldset
             #legend
               legend Sign In
@@ -27,7 +27,7 @@ block content
               .controls
                 button.btn.btn-success Sign In
       .col-md-6
-        form.form-horizontal(action='/auth/signin', method='POST')
+        form.form-horizontal(action='/signup', method='POST')
           fieldset
             #legend
               legend Register

@@ -28,7 +28,7 @@ html(lang='en')
                   a.dropdown-toggle(href='/authors', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                     | Authors 
                     span.caret
-                  ul.dropdown-menu
+                  ul.dropdown-menu.inverse-dropdown
                     li
                       a(href='/authors') All Authors
                     li.divider(role='separator')
@@ -41,7 +41,7 @@ html(lang='en')
                   a.dropdown-toggle(href='/books', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                     | Books 
                     span.caret
-                  ul.dropdown-menu
+                  ul.dropdown-menu.inverse-dropdown
                     li
                       a(href='/books') All Books
                     li.divider(role='separator')
@@ -55,8 +55,8 @@ html(lang='en')
                   li
                     a(href='#')= user.email
                   li
-                    a.signout(href='/auth/signout') Sign Out
+                    a.signout(href='/signout') Sign Out
                 else
                   li
-                    a(href='/auth/signin') Sign In
+                    a(href='/signin') Sign In
   block content

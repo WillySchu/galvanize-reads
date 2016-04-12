@@ -13,13 +13,13 @@ router.get('/signout', (req, res, next) => {
   res.redirect('/');
 });
 
-router.post('/', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   errors = validate.checkPassword(req.body);
   if (errors) {
     return res.render('signin', {errors});
   }
   Users.createUser(req.body, (err, data) => {
-    res.send(data);
+    res.redirect('/')
   });
 });
 
@@ -32,6 +32,14 @@ router.post('/signin', (req, res, next) => {
       res.redirect('/');
     }
   });
+});
+
+router.use((req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/signin');
+  }
 });
 
 module.exports = router;
