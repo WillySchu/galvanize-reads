@@ -18,7 +18,8 @@ router.post('/signup', (req, res, next) => {
   if (errors) {
     return res.render('signin', {errors});
   }
-  Users.createUser(req.body, (err, data) => {
+  Users.createUser(req.body, (err, user) => {
+    req.session.user = user[0];
     res.redirect('/')
   });
 });

@@ -19,7 +19,7 @@ Users.createUser = (data, callback) => {
 
       data.password_digest = hash;
       delete data.password;
-      delete data.confirm_password;
+      delete data.password_confirm;
       Users().insert(data, '*').then((data) => {
         callback(undefined, data);
       });
@@ -29,13 +29,10 @@ Users.createUser = (data, callback) => {
 
 Users.authenticateUser = (emailOrName, password, callback) => {
   Users().where({email: emailOrName}).orWhere({name: emailOrName}).first().then(user => {
-    console.log(emailOrName);
-    console.log(user);
     if(!user) return callback('Email and password don\'t match');
     bcrypt.compare(password, user.password_digest, (err, isMatch) => {
-      console.log(err);
       if (err || !isMatch) {
-        return callback('Email and password don\'t match')
+        return callback('Email and password don\'t match');
       } else {
         return callback(undefined, user);
       }

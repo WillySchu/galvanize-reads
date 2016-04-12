@@ -25,6 +25,7 @@ block content
         hr
         p.lead= book.description
         p
+        if user && user.is_admin
           a.btn.btn-default(href='/books/#{book.id}/edit', role='button') Edit &raquo;
           button.btn.btn-default.confirm-delete-modal(role='button') Delete &raquo;
     hr.featurette-divider

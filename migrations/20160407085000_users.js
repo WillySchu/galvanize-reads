@@ -4,7 +4,8 @@ exports.up = function(knex, Promise) {
     table.string('name').notNullable().unique();
     table.string('email').notNullable().unique();
     table.string('password_digest').notNullable();
-  })
+    table.boolean('is_admin').defaultTo(false);
+  });
 };
 
 exports.down = function(knex, Promise) {

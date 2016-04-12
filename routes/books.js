@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../lib/dbio');
+const valid = require('../lib/validations')
 
 router.get('/', (req, res, next) => {
   res.render('books/books');
@@ -22,19 +23,19 @@ router.get('/:id/edit', (req, res, next) => {
   })
 })
 
-router.post('/', (req, res) => {
+router.post('/', valid.reqAdmin, (req, res) => {
   db.insertBook(req.body).then((data) => {
     res.redirect('/books');
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', valid.reqAdmin, (req, res) => {
   db.updateBook(req.params.id, req.body).then(data => {
     res.redirect('/books/' + req.params.id);
   })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', valid.reqAdmin, (req, res) => {
   db.delBook(req.params.id).then(data => {
     res.redirect('/books');
   });

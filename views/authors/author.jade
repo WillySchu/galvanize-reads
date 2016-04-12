@@ -16,6 +16,7 @@ block content
       .col-md-7
         p.lead= authorbook.author.biography
         p
+        if user && user.is_admin
           a.btn.btn-default(href='/authors/#{authorbook.author.id}/edit', role='button') Edit &raquo;
           button.btn.btn-default.confirm-delete-modal(role='button') Delete &raquo;
     hr.featurette-divider

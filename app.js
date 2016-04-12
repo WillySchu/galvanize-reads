@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(setLocals);
 
 app.use('/', routes);
-app.use('/ex', example);
+// app.use('/ex', example);
 app.use('/', auth);
 app.use('/authors', authors);
 app.use('/books', books);
