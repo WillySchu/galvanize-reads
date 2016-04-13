@@ -42,6 +42,11 @@ router.get('/:id/edit', (req, res, next) => {
 
 
 router.post('/', valid.reqAdmin, (req, res) => {
+  console.log(req.body);
+  const errors = valid.checkBook(req.body);
+  if (errors) {
+    return res.render('books/newbook', {errors, b: req.body})
+  }
   db.insertBook(req.body).then((data) => {
     res.redirect('/books');
   });
