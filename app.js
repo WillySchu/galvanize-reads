@@ -11,6 +11,7 @@ const routes = require('./routes/index');
 const books = require('./routes/books');
 const authors = require('./routes/authors');
 const auth = require('./routes/auth');
+const api = require('./routes/api');
 const db = require('./lib/dbio');
 const setLocals = require('./lib/setLocals');
 
@@ -41,6 +42,7 @@ app.use('/', routes);
 app.use('/', auth);
 app.use('/authors', authors);
 app.use('/books', books);
+app.use('/api', api);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

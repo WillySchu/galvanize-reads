@@ -14,8 +14,8 @@ router.get('/new', (req, res, next) => {
 router.get('/genre/:genre', (req, res, next) => {
   db.getBookIdsByGenre(req.params.genre).then(ids => {
     const pbooks = db.filterBooksByIds(ids)
-    Promise.all(pbooks).then(filterbooks => {
-      res.render('books/filterbooks', {filterbooks})
+    Promise.all(pbooks).then(books => {
+      res.render('books/books', {books})
     });
   });
 });

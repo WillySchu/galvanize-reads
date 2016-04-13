@@ -1,7 +1,7 @@
 $(document).ready($(function(){
   const path = window.location.pathname;
   const all = /.*/;
-  $('.nav li a[href=\''+path+'' + all'\']').parents('li').addClass('active');
+  $('.nav li a[href=\''+ path + all + '\']').parents('li').addClass('active');
 
   $('.search-authors').click((e) => {
     e.preventDefault()
