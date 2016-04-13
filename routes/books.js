@@ -24,7 +24,7 @@ router.get('/search', valid.reqAdmin, (req, res, next) => {
   db.searchBooks(req.query.q).then(data => {
     Promise.all(data).then(filterbooks => {
       res.render('books/books', {books: filterbooks});
-    })
+    });
   });
 });
 
