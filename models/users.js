@@ -28,11 +28,13 @@ Users.createUser = (data, callback) => {
 }
 
 Users.authenticateUser = (emailOrName, password, callback) => {
+  const error = ['Email and password don\'t match'];
   Users().where({email: emailOrName}).orWhere({name: emailOrName}).first().then(user => {
-    if(!user) return callback('Email and password don\'t match');
+    if(!user) return callback(error);
     bcrypt.compare(password, user.password_digest, (err, isMatch) => {
       if (err || !isMatch) {
-        return callback('Email and password don\'t match');
+        console.log(error);
+        return callback(error);
       } else {
         return callback(undefined, user);
       }

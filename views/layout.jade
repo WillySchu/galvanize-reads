@@ -30,7 +30,7 @@ html(lang='en')
                     span.caret
                   ul.dropdown-menu.inverse-dropdown
                     li
-                      a(href='/authors') All Authors
+                      a(href='/authors') All Authors - #{totAuthors[0].count}
                     if user && user.is_admin
                       li.divider(role='separator')
                       li
@@ -44,7 +44,7 @@ html(lang='en')
                     span.caret
                   ul.dropdown-menu.inverse-dropdown
                     li
-                      a(href='/books') All Books
+                      a(href='/books') All Books - #{totBooks[0].count}
                     li.divider(role='seperator')
                     li.menu-item.dropdown.dropdown-submenu
                       a.dropdown-toggle(href='#', data-toggle='dropdown') Books by Genre

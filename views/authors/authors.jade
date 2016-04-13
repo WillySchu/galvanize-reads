@@ -7,7 +7,7 @@ block content
       .row.authors
         .col-md-5
           .authors-heading
-            img.author-img.img-responsive(src='#{authorbook.author.portrait_url}', alt='#{authorbook.author.first_name}')
+            img.author-img.img-responsive(src='#{authorbook.author.portrait_url}'||'http://www.hdi-slc.com/wp-content/uploads/2012/07/blank-profile.jpg', alt='#{authorbook.author.first_name}')
             h2= authorbook.author.first_name + ' ' + authorbook.author.last_name
           .books-author
             h4 Books:

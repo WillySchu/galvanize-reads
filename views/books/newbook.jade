@@ -18,7 +18,7 @@ block content
           .control-group
             label.control-label(for='author1') Author
             .controls
-              select#author1.form-control.input-lg(type='text', name='author1', placeholder='William Shakespear')
+              select#author1.form-control.input-lg(type='text', name='author1')
                 each authorbook in authorbooks
                   option(val='#{authorbook.author.first_name} #{authorbook.author.last_name}')= authorbook.author.first_name + ' ' + authorbook.author.last_name
               p.help-block Please select an author

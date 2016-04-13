@@ -13,6 +13,9 @@ block content
           fieldset
             #legend
               legend Sign In
+              if signinErrors
+                - var errors = signinErrors
+                include ./includes/errors.jade
             .control-group
               label.control-label(for='emailOrName') E-mail or Username
               .controls
@@ -31,6 +34,9 @@ block content
           fieldset
             #legend
               legend Register
+              if signupErrors
+                - var errors = signupErrors
+                include ./includes/errors.jade
             .control-group
               label.control-label(for='name') Username
               .controls

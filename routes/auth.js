@@ -16,7 +16,7 @@ router.get('/signout', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   errors = validate.checkPassword(req.body);
   if (errors) {
-    return res.render('signin', {errors});
+    return res.render('signin', {signupErrors: errors});
   }
   Users.createUser(req.body, (err, user) => {
     req.session.user = user[0];
@@ -25,9 +25,9 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/signin', (req, res, next) => {
-  Users.authenticateUser(req.body.emailOrName, req.body.password, (err, user) => {
-    if (err) {
-      res.render('signin', {error: err});
+  Users.authenticateUser(req.body.emailOrName, req.body.password, (errors, user) => {
+    if (errors) {
+      return res.render('signin', {signinErrors: errors});
     } else {
       req.session.user = user;
       res.redirect('/');

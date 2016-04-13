@@ -5,7 +5,7 @@ block content
     hr.featurette-divider
     .row.book-single
       .col-md-5
-        img.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
+        img.img-responsive(src='#{book.cover_url}'||'https://www.anglo-egyptian.com/books_posters/defbookcover.jpg', alt='#{book.title}')
       .col-md-7
         h4 Title:
         h2= book.title

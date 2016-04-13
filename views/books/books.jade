@@ -21,6 +21,6 @@ block content
           p
             a.btn.btn-default(href='/books/#{book.id}', role='button') View details &raquo;
         .col-md-5
-          img.featurette-image.img-responsive(src='#{book.cover_url}', alt='#{book.title}')
+          img.featurette-image.img-responsive(src='#{book.cover_url}'||'https://www.anglo-egyptian.com/books_posters/defbookcover.jpg', alt='#{book.title}')
       hr.featurette-divider
     include ../includes/footer.jade
