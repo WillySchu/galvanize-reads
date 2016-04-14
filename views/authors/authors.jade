@@ -4,7 +4,7 @@ block content
   .container
     hr.featurette-divider
     each authorbook, index in authorbooks
-      if index < 5
+      if index < 5 * (page + 1) && index >= 5 * page
         .row.authors
           .col-md-5
             .authors-heading
@@ -29,5 +29,18 @@ block content
               p.lead= authorbook.author.biography.substr(0,397) + '...'
             p
               a.btn.btn-default(href='/authors/#{authorbook.author.id}', role='button') View details &raquo;
-        hr.featurette-divider
+        if index < (5 * (page + 1)) - 1 && index < totAuthors[0].count - 1
+          hr.featurette-divider
+    nav.bottom-nav
+      ul.pager
+        li.previous(class='#{page == 0 ? "disabled" : ""}')
+          a(href='#{path}?page=#{page - 1}')
+            span(aria-hidden='true') ←
+            |  Back
+        li.next(class='#{books.length < 5 * (page + 1) ? "disabled" : ""}')
+          a(href='#{path}?page=#{page - 1 + 2}')
+            | Next  
+            span(aria-hidden='true') →
+      hr.featurette-divider
     include ../includes/footer.jade
+    script(src='/javascripts/pagination')

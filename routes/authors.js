@@ -34,7 +34,7 @@ router.get('/:id/edit', (req, res, next) => {
 router.post('/', valid.reqAdmin, (req, res, next) => {
   console.log(req.body);
   const errors = valid.checkAuthor(req.body);
-  if (errors) {
+  if (errors && errors.length > 0) {
     return res.render('authors/newauthor', {errors, a: req.body})
   }
   db.insertAuthor(req.body).then((data) => {

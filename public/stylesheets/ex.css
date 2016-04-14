@@ -350,3 +350,10 @@ a {
 .table-link {
   padding-right: 10px;
 }
+
+/* BOTTOM NAVBAR
+------------------------------------------*/
+
+.bottom-nav {
+  padding-top: 30px;
+}

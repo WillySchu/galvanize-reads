@@ -38,6 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(setLocals);
 
+app.use((req, res, next) => {
+  console.log(res.locals.page);
+  next();
+})
+
 app.use('/', routes);
 app.use('/', auth);
 app.use('/authors', authors);

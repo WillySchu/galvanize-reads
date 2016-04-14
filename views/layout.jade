@@ -35,9 +35,6 @@ html(lang='en')
                       li.divider(role='separator')
                       li
                         a(href='/authors/new') Add New Author
-                      li.divider(role='separator')
-                      li
-                        a(href='#') Something else here
                 li.dropdown
                   a.dropdown-toggle(href='/books', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                     | Books 
@@ -56,9 +53,6 @@ html(lang='en')
                       li.divider(role='separator')
                       li
                         a(href='/books/new') Add New Book
-                      li.divider(role='separator')
-                      li
-                        a(href='#') Something else here
                 if user && user.is_admin
                   li
                     a(href='/users') Users
@@ -82,7 +76,7 @@ html(lang='en')
               ul.nav.navbar-nav.navbar-right
                 if user
                   li
-                    a(href='#')= user.email
+                    a(href='/users/#{user.id}')= user.email
                   li
                     a.signout(href='/signout') Sign Out
                 else

@@ -4,7 +4,7 @@ block content
   .container
     hr.featurette-divider
     each book, index in books
-      if index < 5
+      if index < 5 * (page + 1) && index >= 5 * page
         .row.featurette
           .col-md-7
             h2.featurette-heading= book.title + ' | '
@@ -23,5 +23,18 @@ block content
               a.btn.btn-default(href='/books/#{book.id}', role='button') View details &raquo;
           .col-md-5
             img.featurette-image.img-responsive(src='#{book.cover_url}'||'https://www.anglo-egyptian.com/books_posters/defbookcover.jpg', alt='#{book.title}')
-        hr.featurette-divider
+        if index < (5 * (page + 1)) - 1 && index < totBooks[0].count - 1
+          hr.featurette-divider
+    nav.bottom-nav
+      ul.pager
+        li.previous(class='#{page == 0 ? "disabled" : ""}')
+          a(href='#{path}?page=#{page - 1}')
+            span(aria-hidden='true') ←
+            |  Back  
+        li.next(class='#{books.length < 5 * (page + 1) ? "disabled" : ""}')
+          a(href='#{path}?page=#{page - 1 + 2}')
+            | Next  
+            span(aria-hidden='true') →
+      hr.featurette-divider
     include ../includes/footer.jade
+  script(src='/javascripts/pagination.js')
