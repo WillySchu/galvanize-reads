@@ -1,0 +1,63 @@
+extends ../layout
+
+block content
+  .buffer
+  .container
+    form.form-horizontal(action='/users/#{users.id}/?_method=PUT', method='POST')
+      .row
+        fieldset
+          legend #{users.name}
+      .row
+        .col-md-6
+          .control-group
+            label.control-label(for='name') Username
+            .controls
+              input.form-control.input-lg(type='text', name='name', value='#{users.name}')
+              p.help-block Please enter the book's title
+          .control-group
+            label.control-label(for='email') Email
+            .controls
+              input.form-control.input-lg(type='text', name='email', placeholder='member@gmail.com' value='#{users.email}')
+              p.help-block User's email
+          .control-group
+            label.control-label(for='is_admin') Member Status
+            .controls
+              select.form-control.input-lg( name='is_admin')
+                if users.is_admin
+                  option(value='t' selected) Admin
+                  option(value='f') Member
+                else
+                  option(value='t') Admin
+                  option(value='f' selected) Member
+              p.help-block User's membership status and authorization level
+        .col-md-6
+          
+          .control-group
+            label.control-label(for='thumb_url') Thumb URL
+            .controls
+              input.form-control.input-lg(type='text', name='thumb_url', placeholder='http://example.com', value='#{users.thumb_url}')
+              p.help-block The url for the user's avatar
+          .control-group
+            label.control-label(for='delete') Delete
+            .controls
+              button.btn.btn-danger.btn-lg.btn-block.confirm-delete-modal(type='button')
+                | Delete #{users.name}
+              p.help-block Delete this user
+      .row
+        .control-group
+          .controls
+            button.btn.btn-success(type='submit') Submit
+            
+    hr.featurette-divider
+    #modal-delete.modal.modal-effect-blur
+      .modal-content
+        h3 Are you sure you want to delete #{users.name}?
+        br
+        div
+          span
+            form.delete-form(action='/users/#{users.id}?_method=DELETE', method='POST')
+              button.modal-delete.btn.btn-danger.btn-lg Delete
+            button.modal-delete-cancel.btn.btn-primary.btn-lg Cancel
+    .modal-overlay
+    include ../includes/footer.jade
+    script(src='/javascripts/delete.js')

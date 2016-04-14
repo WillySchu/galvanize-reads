@@ -42,4 +42,20 @@ Users.authenticateUser = (emailOrName, password, callback) => {
   })
 }
 
+Users.getUsers = () => {
+  return Users();
+}
+
+Users.getUser = (id) => {
+  return Users().where({id: id}).first();
+}
+
+Users.updateUser = (id, user) => {
+  return Users().where({id: id}).update({name: user.name, email: user.email, is_admin: user.is_admin, thumb_url: user.thumb_url});
+}
+
+Users.deleteUser = (id) => {
+  return Users().del().where({id: id});
+}
+
 module.exports = Users;

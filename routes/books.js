@@ -29,7 +29,7 @@ router.get('/search', valid.reqAdmin, (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  db.getBook(req.params.id).then((book) => {
+  db.getBookAndAuthId(req.params.id).then((book) => {
     res.render('books/book', {book});
   });
 });

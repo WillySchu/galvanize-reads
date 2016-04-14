@@ -12,6 +12,7 @@ const books = require('./routes/books');
 const authors = require('./routes/authors');
 const auth = require('./routes/auth');
 const api = require('./routes/api');
+const users = require('./routes/users');
 const db = require('./lib/dbio');
 const setLocals = require('./lib/setLocals');
 
@@ -38,10 +39,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(setLocals);
 
 app.use('/', routes);
-// app.use('/ex', example);
 app.use('/', auth);
 app.use('/authors', authors);
 app.use('/books', books);
+app.use('/users', users);
 app.use('/api', api);
 
 app.use(function(req, res, next) {

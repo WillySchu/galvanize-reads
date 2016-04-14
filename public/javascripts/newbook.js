@@ -6,7 +6,7 @@ $('#moreAuthor').click((e) => {
   $('#secondAuthor').empty()
   $.ajax({
     type: 'GET',
-    url: '/api'
+    url: '/api/authors'
   }).then(data => {
     let newSelect = '<label for="author2" class="control-label">Second Author' +
     '</label>' +
@@ -32,7 +32,7 @@ $('#moreAuthor').click((e) => {
       $('#thirdAuthor').empty()
       $.ajax({
         type: 'GET',
-        url: '/api'
+        url: '/api/authors'
       }).then(data => {
         let newSelect = '<label for="author3" class="control-label">Second Author' +
         '</label>' +

@@ -30,6 +30,10 @@ function JoinTable() {
   return knex('jointable');
 }
 
+function Users() {
+  return knex('users');
+}
+
 function loadAuthors(data) {
   for (let i = 1; i < data.length; i++) {
     if(data[i][5].trim()) {
@@ -105,10 +109,19 @@ function loadJoinTable() {
   });
 }
 
+function loadUser() {
+  Users().insert({name: "Will", email: "willjschumacher@gmail.com", thumb_url: "http://goo.gl/aeRNev", password_digest: "$2a$10$hlFTCIYNkuv/DORm22gGeOR0F.NyMzjKj.19kkwv/X8oezQgRlkBS", is_admin: "t"}).then(data => {
+
+  }).catch(err => {
+    console.log(err);
+  })
+}
+
 function loadUp(data) {
   loadAuthors(data);
   loadBooks(data);
-  loadJoinTable()
+  loadJoinTable();
+  loadUser();
 }
 
 readData().then((data) => {

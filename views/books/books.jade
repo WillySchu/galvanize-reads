@@ -4,23 +4,24 @@ block content
   .container
     hr.featurette-divider
     each book, index in books
-      .row.featurette
-        .col-md-7
-          h2.featurette-heading= book.title + ' | '
-            span.text-muted
-              a(href='/authors/#{book.author1_id}')= book.author1
-            if book.author2
-              if book.author2.length > 1
-                span.text-muted= ', '
-                  a(href='/authors/#{book.author2_id}')= book.author2
-            if book.author3
-              if book.author3.length > 1
-                span.text-muted= ', '
-                  a(href='/authors/#{book.author3_id}')= book.author3
-          p.lead= book.description
-          p
-            a.btn.btn-default(href='/books/#{book.id}', role='button') View details &raquo;
-        .col-md-5
-          img.featurette-image.img-responsive(src='#{book.cover_url}'||'https://www.anglo-egyptian.com/books_posters/defbookcover.jpg', alt='#{book.title}')
-      hr.featurette-divider
+      if index < 5
+        .row.featurette
+          .col-md-7
+            h2.featurette-heading= book.title + ' | '
+              span.text-muted
+                a(href='/authors/#{book.author1_id}')= book.author1
+              if book.author2
+                if book.author2.length > 1
+                  span.text-muted= ', '
+                    a(href='/authors/#{book.author2_id}')= book.author2
+              if book.author3
+                if book.author3.length > 1
+                  span.text-muted= ', '
+                    a(href='/authors/#{book.author3_id}')= book.author3
+            p.lead= book.description
+            p
+              a.btn.btn-default(href='/books/#{book.id}', role='button') View details &raquo;
+          .col-md-5
+            img.featurette-image.img-responsive(src='#{book.cover_url}'||'https://www.anglo-egyptian.com/books_posters/defbookcover.jpg', alt='#{book.title}')
+        hr.featurette-divider
     include ../includes/footer.jade

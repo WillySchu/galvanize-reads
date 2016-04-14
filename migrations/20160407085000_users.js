@@ -3,6 +3,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('name').notNullable().unique();
     table.string('email').notNullable().unique();
+    table.string('thumb_url')
+    table.timestamp('joined').defaultTo(knex.fn.now());
     table.string('password_digest').notNullable();
     table.boolean('is_admin').defaultTo(false);
   });
