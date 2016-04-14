@@ -11,7 +11,7 @@ router.get('/new', (req, res, next) => {
   res.render('authors/newauthor');
 });
 
-router.get('/search', valid.reqAdmin, (req, res, next) => {
+router.get('/search', (req, res, next) => {
   db.searchAuthors(req.query.q).then(promises => {
     Promise.all(promises).then(data => {
       res.render('authors/authors', {authorbooks: data});
