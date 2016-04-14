@@ -39,6 +39,10 @@ router.post('/', valid.reqAdmin, (req, res, next) => {
   }
   db.insertAuthor(req.body).then((data) => {
     res.redirect('/authors');
+  }).catch(err => {
+    console.log(err);
+    const errors = ['Author already exists'];
+    res.render('authors/newauthor', {errors})
   });
 });
 

@@ -42,7 +42,6 @@ router.get('/:id/edit', (req, res, next) => {
 
 
 router.post('/', valid.reqAdmin, (req, res) => {
-  console.log(req.body);
   const errors = valid.checkBook(req.body);
   if (errors && errors.length > 0) {
     return res.render('books/newbook', {errors, b: req.body})

@@ -22,24 +22,32 @@ block content
               input.form-control.input-lg(type='text', name='last_name', placeholder='Shakespear' value='#{a.last_name ? a.last_name: ""}')
               p.help-block Please enter the author's last name
           .control-group
-            label.control-label(for='portrait_url') Portrait URL
-            .controls
-              input.form-control.input-lg(type='text', name='portrait_url', placeholder='http://example.com' value='#{a.portrait_url ? a.portrait_url: ""}')
-              p.help-block Please enter a url
-        .col-md-6
-          .control-group
             label.control-label(for='biography') Biography
             .controls
               textarea.form-control.input-lg(type='text', name='biography', placeholder='blah, blah, blah' rows=5)= a.biography
               p.help-block Please enter a brief biography of the author
+        .col-md-6
+          .control-group
+            label.control-label(for='portrait_url') Portrait URL
+            .controls
+              input.form-control.input-lg(type='text', name='portrait_url', placeholder='http://example.com' value='#{a.portrait_url ? a.portrait_url: ""}')
+              p.help-block Please enter a url
           .control-group
             label.control-label(for='books') Books
             .controls
-              input.form-control.input-lg(type='text', name='books', placeholder='not functional')
+              input.form-control.input-lg.add-book-form(type='text', name='books', placeholder='not functional')
               p.help-block Please enter books by this author
+          .control-group
+            .controls
+              a.btn.btn-success.add-book-button(href='#') Add
+          .control-group
+            label.control-label(for='books-select')
+            .controls
+              select.form-control.added-books(multiple type='text' name="added_books")
       .row
         .control-group
           .controls
             button.btn.btn-success(type='submit') Submit
     hr.featurette-divider
     include ../includes/footer.jade
+    script(src='/javascripts/newauthor.js')

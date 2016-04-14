@@ -58,9 +58,9 @@ html(lang='en')
                     a(href='/users') Users
               if user
                 .col-sm-3.col-md-3.search-form
-                  form#search-form.navbar-form(role='search')
+                  form#search-form.navbar-form(role='search' action='/books/search')
                     .input-group
-                      input.form-control#search-input(type='text', placeholder='Search', name='q')
+                      input.form-control#search-input(type='text', placeholder='Search Books', name='q')
                       .input-group-btn
                         .btn-group
                           button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
