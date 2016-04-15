@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const override = require('method-override');
+const helmet = require('helmet');
 
 const example = require('./routes/landing');
 const routes = require('./routes/index');
@@ -24,13 +25,15 @@ app.set('view engine', 'jade');
 
 app.set('trust proxy', 1);
 
+app.use(helmet());
+
 app.use(logger('dev'));
 app.use(override('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieSession({
-  name: 'session',
+  name: 'sessionId',
   keys: [process.env.SESSION_KEY1, process.env.SESSION_KEY2],
   secret: 'asdf'
 }));
