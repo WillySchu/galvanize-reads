@@ -21,7 +21,7 @@ router.get('/search', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   db.getBooksByAuthor(req.params.id).then((authorbook) => {
-    res.render('authors/author', {authorbook})
+    res.render('authors/author', {authorbook});
   });
 });
 
@@ -35,14 +35,14 @@ router.post('/', valid.reqAdmin, (req, res, next) => {
   console.log(req.body);
   const errors = valid.checkAuthor(req.body);
   if (errors && errors.length > 0) {
-    return res.render('authors/newauthor', {errors, a: req.body})
+    return res.render('authors/newauthor', {errors, a: req.body});
   }
   db.insertAuthor(req.body).then((data) => {
     res.redirect('/authors');
   }).catch(err => {
     console.log(err);
     const errors = ['Author already exists'];
-    res.render('authors/newauthor', {errors})
+    res.render('authors/newauthor', {errors});
   });
 });
 

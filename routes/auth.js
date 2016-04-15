@@ -21,7 +21,7 @@ router.post('/signup', (req, res, next) => {
   }
   Users.createUser(req.body, (err, user) => {
     req.session.user = user[0];
-    res.redirect('/')
+    res.redirect('/');
   });
 });
 

@@ -3,7 +3,7 @@
 $('#moreAuthor').click((e) => {
   console.log(1);
   e.preventDefault();
-  $('#secondAuthor').empty()
+  $('#secondAuthor').empty();
   $.ajax({
     type: 'GET',
     url: '/api/authors'
@@ -29,7 +29,7 @@ $('#moreAuthor').click((e) => {
     $('#moreAuthor2').click((e) => {
       console.log(2);
       e.preventDefault();
-      $('#thirdAuthor').empty()
+      $('#thirdAuthor').empty();
       $.ajax({
         type: 'GET',
         url: '/api/authors'
@@ -46,7 +46,7 @@ $('#moreAuthor').click((e) => {
         '<p class="help-block">Please select a third author</p>' +
         '</div>'
         $('#thirdAuthor').append($(newSelect));
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});

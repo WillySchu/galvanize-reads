@@ -26,7 +26,7 @@ router.put('/:id', valid.reqAdmin, (req, res, next) => {
 
 router.delete('/:id', valid.reqAdmin, (req, res, next) => {
   Users.deleteUser(req.params.id).then(data => {
-    res.redirect('/users')
+    res.redirect('/users');
   });
 });
 

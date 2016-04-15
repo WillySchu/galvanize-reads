@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const parse = require('csv-parse');
 const Promise = require('bluebird');
-const knex = require('./db/knex')
+const knex = require('./db/knex');
 
 function readData() {
   const promise = new Promise((resolve, reject) => {
@@ -142,14 +142,6 @@ function loadUp(data) {
     console.log('broken');
   });
 }
-
-// readData().then((data) => {
-//   return loadUp(data).then((e) => {
-//     process.exit();
-//   }).catch((e) => {
-//     console.log('also broken');
-//   });
-// });
 
 module.exports = function start() {
   return readData().then((data) => {

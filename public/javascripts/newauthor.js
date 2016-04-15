@@ -2,7 +2,7 @@ $('.add-book-form').on('keyup keypress', e => {
   if (e.which == 13) {
     return false;
   }
-})
+});
 
 $('.add-book-form').keypress(e => {
   if (e.which == 13) {
@@ -27,4 +27,4 @@ $('form').submit(e => {
   if ($('.added-books option').val()) {
     $('.added-books option').prop('selected', true);
   }
-})
+});

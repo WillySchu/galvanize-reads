@@ -13,9 +13,9 @@ router.get('/new', (req, res, next) => {
 
 router.get('/genre/:genre', (req, res, next) => {
   db.getBookIdsByGenre(req.params.genre).then(ids => {
-    const pbooks = db.filterBooksByIds(ids)
+    const pbooks = db.filterBooksByIds(ids);
     Promise.all(pbooks).then(books => {
-      res.render('books/books', {books})
+      res.render('books/books', {books});
     });
   });
 });
@@ -54,7 +54,7 @@ router.post('/', valid.reqAdmin, (req, res) => {
 router.put('/:id', valid.reqAdmin, (req, res) => {
   db.updateBook(req.params.id, req.body).then(data => {
     res.redirect('/books/' + req.params.id);
-  })
+  });
 });
 
 router.delete('/:id', valid.reqAdmin, (req, res) => {
