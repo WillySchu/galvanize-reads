@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const override = require('method-override');
 const helmet = require('helmet');
 
-const example = require('./routes/landing');
 const routes = require('./routes/index');
 const books = require('./routes/books');
 const authors = require('./routes/authors');
